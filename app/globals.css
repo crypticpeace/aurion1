@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-brand text-white;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand ring-offset-2;
+  }
+}
+
+@layer components {
+  @media (min-width: 768px) {
+    .container { padding-left: 2rem; padding-right: 2rem; }
+  }
+  @media (min-width: 1024px) {
+    .container { padding-left: 3rem; padding-right: 3rem; }
+  }
+
+  /* Tracked uppercase line used across the brand (hero eyebrow, scroll cue) */
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-eyebrow text-ink-700 sm:text-xs;
+  }
+  .display {
+    @apply font-extrabold leading-[0.95] tracking-tightest;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-3 rounded-md px-7 py-4 text-[15px] font-medium transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-600;
+  }
+  .btn-light {
+    @apply btn bg-white text-ink hover:bg-ink hover:text-white;
+  }
+  .link-underline {
+    @apply relative pb-1 text-[15px] font-medium text-ink after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:bg-ink after:transition-transform after:duration-300 hover:after:scale-x-50;
+  }
+}
+
+/* Hairline SVG paths draw themselves once on load (pathLength=1 on the path) */
+.draw-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+/* Full-bleed scroller whose first card lines up with .container content */
+.bleed-x {
+  --bleed: 1.25rem;
+  padding-left: var(--bleed);
+  padding-right: var(--bleed);
+}
+@media (min-width: 768px) {
+  .bleed-x { --bleed: 2rem; }
+}
+@media (min-width: 1024px) {
+  .bleed-x { --bleed: max(3rem, calc((100vw - 1320px) / 2 + 3rem)); }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .draw-path {
+    stroke-dashoffset: 0;
+  }
+}
