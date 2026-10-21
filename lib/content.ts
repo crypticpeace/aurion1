@@ -107,7 +107,7 @@ export const whatsappHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComp
 
 export const nav = [
   { label: "Services", href: "/#services" },
-  { label: "Work", href: "/work" },
+  { label: "Portfolio", href: "/work" },
   { label: "Live Events", href: "/events" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/#why-aurion" },
